@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/fav"
+        android:onClick="onOptionsItemSelected"
+        android:icon="@drawable/fav"
+        app:showAsAction="always"
+        android:title="fav" />
+    <item
+        android:id="@+id/share"
+        android:onClick="onOptionsItemSelected"
+        android:icon="@drawable/share"
+        app:showAsAction="always"
+        android:title="share" />
+    <item
+        android:id="@+id/save_txt"
+        android:icon="@drawable/save_txt"
+        app:showAsAction="always"
+        android:onClick="onOptionsItemSelected"
+        android:title="save" />
+    <item
+        android:id="@+id/bluetooth"
+        android:icon="@drawable/bluetooth"
+        android:onClick="onOptionsItemSelected"
+        app:showAsAction="always"
+        android:title="bluetooth" />
+
+</menu>
