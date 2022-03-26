@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> arr;
     ArrayList<String> favoris = new ArrayList<String>();
     String selec = "";
+    String selec_q;//question pour favoris
+    String selec_r;//réponse pour favoris
 
 
     //mettre dans test valeurs du parsed JSON
@@ -66,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 if (selec.isEmpty()) {
 
                 } else {
-                    favoris.add(selec);
-                    System.out.println(favoris);
+                    favoris.add(selec_q);
+                    favoris.add(selec_r);
+                    //System.out.println(favoris);
                 }
 
                 break;
@@ -85,12 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Exception", "File write failed: " + e.toString());
                 }
                 break;
-            case R.id.bluetooth:
-                String t = "";
-                for (int i = 0; i < 10; i++) {
-                    t += "\n" + arr.getItem(i);
-                }
-                break;
+
             case R.id.share:
                 if (selec.isEmpty()) {
 
@@ -124,11 +123,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             new JsonTask().execute("https://blague.xyz/api/joke/random");
 
+
         }
         //System.out.println(test);
         arr = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, test);
 
         l.setAdapter(arr);
+
+
         //selectionner une blague
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,14 +139,25 @@ public class MainActivity extends AppCompatActivity {
                 if (position % 2 == 0) {
                     String s = parent.getItemAtPosition(position).toString();
                     String t = parent.getItemAtPosition(position + 1).toString();
+                    Object v = parent.getItemAtPosition(position);
                     String u = "\n" + s + "\n" + t;
-                    selec = u;
                     //u est la blague qu'on veut stocker avec la réponse liée
+                    selec = u;
+                    selec_q = s;
+                    selec_r = t;
+                    //changer la couleur pour afficher la réponse
+                    l.getChildAt(position+1).setBackgroundColor(Color.LTGRAY);
+
+                }else{
+                    l.getChildAt(position).setBackgroundColor(Color.LTGRAY);
                 }
 
             }
         });
         //fin du code pour sélectionner une blague
+        //changer la couleur du background
+        //System.out.println(l.getChildCount()); au début : 0
+
 
 
     }
@@ -202,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            System.out.println(result);
+            //System.out.println(result);
             //analyse et recupere les objets JSON
             String question = null;
             String answer = null;
@@ -218,6 +231,13 @@ public class MainActivity extends AppCompatActivity {
             //fin du parsing JSON
             arr.add(question);
             arr.add(answer);
+            for(int i =0;i<=l.getChildCount();i++){
+                //pour qu'on soit sur une rep
+                if(i % 2 != 0){
+                    l.getChildAt(i).setBackgroundColor(Color.BLACK);
+                }
+            }
+
             //tv.setText(result);
 
         }
@@ -244,6 +264,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
+
 
 }
 

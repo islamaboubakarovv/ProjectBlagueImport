@@ -19,11 +19,6 @@
         app:showAsAction="always"
         android:onClick="onOptionsItemSelected"
         android:title="save" />
-    <item
-        android:id="@+id/bluetooth"
-        android:icon="@drawable/bluetooth"
-        android:onClick="onOptionsItemSelected"
-        app:showAsAction="always"
-        android:title="bluetooth" />
+
 
 </menu>
