@@ -119,7 +119,7 @@ public class Game extends AppCompatActivity {
             arr.add(answer);
             t.setText(arr.get(i));
             y.setText(arr.get(i+1));
-            guess = arr.get(i+1).substring(4);
+            guess = arr.get(i+1).substring(5);
             System.out.println("guess "+guess);
             //mettre le texte en blanc au début pour cacher
             //System.out.println("arr: "+arr);
@@ -148,12 +148,13 @@ public class Game extends AppCompatActivity {
     public void btn(View v) {
         switch (v.getId()) {
             case R.id.CheckD:
-                System.out.println("test");
+                System.out.println("e "+e.getText().toString());
+                System.out.println("guess "+guess);
 
 
                 if(e.toString().isEmpty()){
 
-                }else if(!e.toString().equalsIgnoreCase(guess)){
+                }else if(!e.getText().toString().equalsIgnoreCase(guess)){
                     //int color = Integer.parseInt("bdbdbd", 16)+0xFF000000;
                     //y.setTextColor(color);
                     y.setTextColor(Color.RED);
@@ -164,7 +165,7 @@ public class Game extends AppCompatActivity {
                     } else {
                         y.setText(arr.get(i));
                     }
-                }else if(e.toString().equalsIgnoreCase(guess)){
+                }else if(e.getText().toString().equalsIgnoreCase(guess)){
                     y.setTextColor(Color.GREEN);
                     y.setText("Bonne réponse");
                 }
