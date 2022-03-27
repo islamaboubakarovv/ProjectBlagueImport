@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Deviner"
         android:layout_centerHorizontal="true"
+        android:onClick="btn"
         android:text="Submit"></Button>
 
     <TextView
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:onClick="btn"
         android:text="Next">
     </Button>
 

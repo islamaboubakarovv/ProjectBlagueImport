@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         //tv = (TextView)findViewById(R.id.tv);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             new JsonTask().execute("https://blague.xyz/api/joke/random");
 
 
@@ -245,6 +245,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn(View v) {
         switch (v.getId()) {
+            case R.id.game:
+                Intent int3 = new Intent(MainActivity.this,Game.class);
+                startActivity(int3);
+                break;
             case R.id.reload:
                 arr.clear();
                 for (int i = 0; i < 5; i++) {

@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Array;
 import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -33,7 +34,8 @@ public class Game extends AppCompatActivity {
     TextView y;
     EditText e;
     ArrayList<String> test;
-    ArrayAdapter<String> arr;
+    ArrayList<String>arr;
+    //ArrayAdapter<String> arr;
     ArrayList<String> jokes;
     String guess;
     int trys=0;
@@ -115,6 +117,13 @@ public class Game extends AppCompatActivity {
             //fin du parsing JSON
             arr.add(question);
             arr.add(answer);
+            t.setText(arr.get(i));
+            y.setText(arr.get(i+1));
+            guess = arr.get(i+1).substring(4);
+            System.out.println("guess "+guess);
+            //mettre le texte en blanc au début pour cacher
+            //System.out.println("arr: "+arr);
+            //System.out.println(arr.get(i));
             //tv.setText(result);
 
         }
@@ -127,25 +136,33 @@ public class Game extends AppCompatActivity {
         t = findViewById(R.id.Devinette);
         y = findViewById(R.id.Rep);
         e = findViewById(R.id.Deviner);
+        arr = new ArrayList<String>();
         new JsonTask().execute("https://blague.xyz/api/joke/random");
-        arr = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, test);
-        t.setText(arr.getItem(i));
+        //arr = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, test);
+        //t.setText(arr.get(i));
+        //System.out.println(arr);
+        //t.setText("test");
         //y.setText(arr.getItem(i+1));
 
     }
     public void btn(View v) {
         switch (v.getId()) {
             case R.id.CheckD:
+                System.out.println("test");
+
+
                 if(e.toString().isEmpty()){
 
                 }else if(!e.toString().equalsIgnoreCase(guess)){
+                    //int color = Integer.parseInt("bdbdbd", 16)+0xFF000000;
+                    //y.setTextColor(color);
                     y.setTextColor(Color.RED);
                     trys++;
                     essaisR=3-trys;
                     if(essaisR!=0){
                     y.setText("Plus que "+essaisR+" essais");
                     } else {
-                        y.setText(arr.getItem(i+1));
+                        y.setText(arr.get(i));
                     }
                 }else if(e.toString().equalsIgnoreCase(guess)){
                     y.setTextColor(Color.GREEN);

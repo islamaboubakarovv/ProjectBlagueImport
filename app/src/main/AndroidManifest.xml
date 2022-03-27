@@ -13,6 +13,8 @@
         <activity
             android:name=".favoris"
             android:exported="false" />
+        <activity android:name=".Game"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

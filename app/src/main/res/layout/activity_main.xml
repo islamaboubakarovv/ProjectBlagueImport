@@ -5,11 +5,10 @@
     android:layout_height="match_parent">
 
 
-
     <ListView
         android:id="@+id/txt"
         android:layout_width="match_parent"
-        android:layout_height="507dp"
+        android:layout_height="454dp"
         android:listSelector="@color/teal_200"
 
         />
@@ -27,6 +26,12 @@
         android:layout_height="wrap_content"
         android:onClick="btn"
         android:text="Favoris" />
+    <Button
+        android:id="@+id/game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btn"
+        android:text="Game" />
 
 
 </LinearLayout>
