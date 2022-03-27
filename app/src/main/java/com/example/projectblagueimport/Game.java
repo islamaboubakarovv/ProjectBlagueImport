@@ -175,6 +175,7 @@ public class Game extends AppCompatActivity {
                 t.clearComposingText();
                 y.clearComposingText();
                 e.clearComposingText();
+                trys=0;
                 arr.clear();
                 new JsonTask().execute("https://blague.xyz/api/joke/random");
                 break;
